@@ -22,7 +22,6 @@ function init() {
     button.addChild(bg);
     button.addChild(label);
 
-
     // function: push the button and thig gets bigger
     button.addEventListener("click", handleClick);
     function handleClick(event){
