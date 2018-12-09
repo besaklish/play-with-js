@@ -2,11 +2,18 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="./js/thig_rotation.js"></script>
+        <link rel="stylesheet" href="css/canvas.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
-    <body onload="init();">
-        <canvas id="demoCanvas" width="500" height="600"></canvas>
+    <body>
+        <div class="container">
+            <h1>thig_rotation</h1>
+            <canvas id="demoCanvas"></canvas>        
+        </div>
         <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-        <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
+        <script src="js/thig_rotation.js"></script>
+        <script>
+            window.addEventListener("load", init);
+        </script>
     </body>
 </html>
