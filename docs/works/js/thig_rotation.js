@@ -2,7 +2,7 @@ function init() {
     var stage = new createjs.Stage("demoCanvas");
 
     // add a bitmap (thig_kiwi.jpg)
-    var bitmap = new createjs.Bitmap("../images/thig_kiwi.jpg");
+    var bitmap = new createjs.Bitmap("../images/toki.jpg");
     var bounds = bitmap.getBounds();
     bitmap.setTransform(200, 200, 0.1, 0.1, 0);
     stage.addChild(bitmap);
@@ -31,7 +31,7 @@ function init() {
 
     // add a text
     var text = new createjs.Text("Mawaru\nThig", "80px Arial", "#002000");
-    text.x = 110;
+    text.x = 100;
     text.y = 300;
     text.alpha = 0.3;
     stage.addChild(text);
