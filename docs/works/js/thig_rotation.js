@@ -4,7 +4,7 @@ function init() {
     // add a bitmap (thig_kiwi.jpg)
     var bitmap = new createjs.Bitmap("../images/thig_kiwi.jpg");
     var bounds = bitmap.getBounds();
-    bitmap.setTransform(300, 300, 0.1, 0.1, 0);
+    bitmap.setTransform(200, 200, 0.1, 0.1, 0);
     stage.addChild(bitmap);
 
     // add a button (for making thig bigger)
