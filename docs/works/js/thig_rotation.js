@@ -1,20 +1,6 @@
 function init() {
     var stage = new createjs.Stage("demoCanvas");
 
-    // if resize, then make the canvas fit to it.
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    function handleResize(event){
-        var width = window.innerWidth;
-        var height = window.innerHeight;
-
-        stage.canvas.width = width;
-        stage.canvas.height = height;
-
-        stage.update();
-    }
-
     // add a bitmap (thig_kiwi.jpg)
     var bitmap = new createjs.Bitmap("../images/thig_kiwi.jpg");
     var bounds = bitmap.getBounds();
@@ -23,16 +9,19 @@ function init() {
 
     // add a button (for making thig bigger)
     var button = new createjs.Container();
-    stage.addChild(button);
-    var bg = new createjs.Shape();
-    button.addChild(bg);
-    var label = new createjs.Text("Click here", "24px sans-serif", "#563d7c");
-    button.addChild(label);
-
-    // set the properties for the button
     button.cursor = "pointer";
     button.x = 100;
     button.y = 100;
+    stage.addChild(button);
+
+    // add a bg and label to the button
+    var label = new createjs.Text("Click here", "24px sans-serif", "#563d7c");
+    var bg = new createjs.Shape();
+    bg.graphics.beginFill("#002000").drawRoundRect(-7.5, -7.5, label.getBounds().width+15, label.getBounds().height+15, 10);
+    bg.alpha = 0.1;
+    button.addChild(bg);
+    button.addChild(label);
+
 
     // function: push the button and thig gets bigger
     button.addEventListener("click", handleClick);
@@ -66,6 +55,20 @@ function init() {
 
     if(createjs.Touch.isSupported() == true){
         createjs.Touch.enable(stage);
+    }
+
+    // if resize, then make the canvas fit to it.
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    function handleResize(event){
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        stage.canvas.width = width;
+        stage.canvas.height = height;
+
+        stage.update();
     }
 
     stage.update();
