@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/tips.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Createjs Tips</h1>
+            <hr>
+
+            <h2>CreateJS</h2>
+            <ul>
+                <li>ローカルの画像を使おうとするとCORS(Cross Origin Resource Sharing)のエラーが出る</li>
+                VSCodeの拡張機能「Live Server」を使って簡単にサーバが立てられるので、そこでテストできる
+
+                <li>SmartPhone対応はいくつか処理が必要</li>
+                <ul>
+                    <li>html内にメタタグを追加する</li>
+                    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+                    <li>init()内に以下のコードを追加する</li>
+                    <pre class="prettyprint">
+                        <code class="language-js">
+if(createjs.Touch.isSupported() == true){
+    createjs.Touch.enable(stage);
+}
+
+window.addEventListener("resize", handleResize);
+handleResize();
+
+function handleResize(event){
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    stage.canvas.width = width;
+    stage.canvas.height = height;
+
+    stage.update();
+}
+                        </code>
+                    </pre>
+                </ul>
+            </ul>
+
+            <h2>EaselJS</h2>
+            <ul>
+                <li>Bitmap.getBounds()はWindowのサイズを返してしまう(バグ？)</li>
+                Bitmap.getTransformedBounds()は正しく動く
+
+                <li>Shape.regX, Shape.regYはShape.x, Shape.yからみた距離</li>
+                原点からみた距離ではない
+
+                <li>Bitmapが読み込まれない時...</li>
+                <p>stage.addChild(Bitmap)の時点で画像が読み込めていないかもしれない。ちゃんと読み込んだ後にstage.update()が必要</p>
+                Tickerでstage.update()を繰り返す/PreloadJSなどで対応もできるみたい。
+            </ul>
+        </div>
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    </body>
+</html>
