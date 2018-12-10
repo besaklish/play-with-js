@@ -3,8 +3,8 @@ function init() {
 
     // add a bitmap (tapioka_tea.png and tapioka_perl.jpg)
     var bitmap_tea = new createjs.Bitmap("../images/tapioka_tea.png");
-    bitmap_tea.setTransform(200, 200, 0.25, 0.25);
     bitmap_tea.image.onload = function(){
+        bitmap_tea.setTransform(250, 75, 0.25, 0.25);
         bitmap_tea.regX = bitmap_tea.getTransformedBounds().width / 2;
         bitmap_tea.regY = bitmap_tea.getTransformedBounds().height /2;
         stage.update();
@@ -20,7 +20,7 @@ function init() {
     }
 
     var bitmap_guild = new createjs.Bitmap("../images/toki.jpg");
-    bitmap_guild.setTransform(300, 300, 0.25, 0.25);
+    bitmap_guild.setTransform(200, 250, 0.25, 0.25);
     bitmap_guild.regX = bitmap_guild.image.width /2;
     bitmap_guild.regY = bitmap_guild.image.height/2;
     bitmap_guild.image.onload = function(){
@@ -88,28 +88,28 @@ function init() {
 
     var bound_guild = bitmap_guild.getTransformedBounds();
     function handleUp(event){
-        if (bound_guild.contains(bitmap_tea.x+bitmap_tea.regX, bitmap_tea.y+bitmap_tea.regY)){
+        if (bound_guild.contains(bitmap_tea.x, bitmap_tea.y)){
             bitmap_perl.visible = true;
+            bitmap_perl.alpha = 0;
             bitmap_perl.x = bound_guild.x + bound_guild.width / 2;
-            bitmap_perl.y = bound_guild.y + bound_guild.height /2;
+            bitmap_perl.y = bound_guild.y + bound_guild.height;
+            createjs.Tween.get(bitmap_perl).to({alpha:1}, 3000).to({y:bitmap_perl.y+10}, 1000);
             stage.update();
         }
         alert(
             String(bound_guild.x) 
             + " "
-            + String(bitmap_tea.x+bitmap_tea.regX)
-            + " "
-            + String(bound_guild.x+bound_guild.width)
+            + String(bound_guild.width)
             + " "
             + String(bound_guild.y)
             + " "
-            + String(bitmap_tea.y+bitmap_tea.regY)
+            + String(bound_guild.height)
             + " "
-            + String(bound_guild.y+bound_guild.height)
+            + String(bitmap_tea.x)
             + " "
-            + String(bound_guild.contains(bitmap_tea.regX, bitmap_tea.regY))
+            + String(bitmap_tea.y)
             + " "
-            + String(bitmap_tea.getTransformedBounds().width)
+            + String(bound_guild.contains(bitmap_tea.x, bitmap_tea.y))
             );
         stage.update();
     }
