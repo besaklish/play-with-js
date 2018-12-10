@@ -18,6 +18,14 @@ function init() {
         stage.update();
     }
 
+    var bitmap_guild = new createjs.Bitmap("../images/toki.jpg");
+    bitmap_guild.setTransform(750, 750, 0.25, 0.25);
+    bitmap_guild.regX = bitmap_guild.image.width/2;
+    bitmap_guild.regY = bitmap_guild.image.height/2;
+    bitmap_guild.image.onload = function(){
+        stage.update();
+    }
+
     // add a button (for making thig bigger)
     var button = new createjs.Container();
     button.cursor = "pointer";
@@ -34,6 +42,7 @@ function init() {
 
     // addChild
     stage.addChild(button);
+    stage.addChild(bitmap_guild);
     stage.addChild(bitmap_tea);
     stage.addChild(bitmap_perl);
 
