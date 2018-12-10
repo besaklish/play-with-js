@@ -19,7 +19,7 @@ function init() {
     }
 
     var bitmap_guild = new createjs.Bitmap("../images/toki.jpg");
-    bitmap_guild.setTransform(750, 750, 0.25, 0.25);
+    bitmap_guild.setTransform(300, 300, 0.25, 0.25);
     bitmap_guild.regX = bitmap_guild.image.width/2;
     bitmap_guild.regY = bitmap_guild.image.height/2;
     bitmap_guild.image.onload = function(){
