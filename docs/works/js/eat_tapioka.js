@@ -96,21 +96,6 @@ function init() {
             createjs.Tween.get(bitmap_perl).to({alpha:1}, 3000).to({y:bitmap_perl.y+10}, 1000);
             stage.update();
         }
-        alert(
-            String(bound_guild.x) 
-            + " "
-            + String(bound_guild.width)
-            + " "
-            + String(bound_guild.y)
-            + " "
-            + String(bound_guild.height)
-            + " "
-            + String(bitmap_tea.x)
-            + " "
-            + String(bitmap_tea.y)
-            + " "
-            + String(bound_guild.contains(bitmap_tea.x, bitmap_tea.y))
-            );
         stage.update();
     }
 
