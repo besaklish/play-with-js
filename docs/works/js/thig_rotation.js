@@ -1,7 +1,7 @@
 function init() {
     var stage = new createjs.Stage("demoCanvas");
 
-    // add a bitmap (thig_kiwi.jpg)
+    // add a bitmap (toki.jpg)
     var bitmap = new createjs.Bitmap("../images/toki.jpg");
     var bounds = bitmap.getBounds();
     bitmap.setTransform(200, 200, 0.1, 0.1, 0);
