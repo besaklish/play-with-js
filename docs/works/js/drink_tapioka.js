@@ -89,11 +89,14 @@ function init() {
     var bound_guild = bitmap_guild.getTransformedBounds();
     function handleUp(event){
         if (bound_guild.contains(bitmap_tea.x, bitmap_tea.y)){
-            bitmap_perl.visible = true;
-            bitmap_perl.alpha = 0;
-            bitmap_perl.x = bound_guild.x + bound_guild.width / 2;
-            bitmap_perl.y = bound_guild.y + bound_guild.height;
-            createjs.Tween.get(bitmap_perl).to({alpha:1}, 3000).to({y:bitmap_perl.y+10}, 1000);
+            var poo = bitmap_perl.clone()
+            poo.visible = true;
+            poo.alpha = 0;
+            poo.x = bound_guild.x + bound_guild.width / 2;
+            poo.y = bound_guild.y + bound_guild.height;
+            createjs.Tween.get(poo).to({alpha:1}, 3000).to({y:poo.y+10}, 1000);
+            poo.on("pressmove", handleMove);
+            stage.addChild(poo);
             stage.update();
         }
         stage.update();
