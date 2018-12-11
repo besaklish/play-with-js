@@ -56,6 +56,14 @@ function handleResize(event){
                 <p>stage.addChild(Bitmap)の時点で画像が読み込めていないかもしれない。ちゃんと読み込んだ後にstage.update()が必要</p>
                 Tickerでstage.update()を繰り返す/PreloadJSなどで対応もできるみたい。
             </ul>
+
+            <h2>PreloadJS</h2>
+            <ul>
+                <li>PreloadJSで読み込んだ画像をEaselJSで使う方法</li>
+                <p>次のリンクを参考にした：<a href="http://www.ilike2flash.com/2013/06/load-multiple-images-in-easeljs.html">Load multiple images in EaselJS</a></p>
+                <p>init()内にはPreloadJSだけを記述する。completeイベントのハンドラとしてcompleteHandler関数を設定し(これはinit()内)、completeHandler内にEaselJSを記述する</p>
+                <p>init(), completeHandler()の両方で使いたい変数は一番最初に定義しておく。</p>
+            </ul>
         </div>
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     </body>

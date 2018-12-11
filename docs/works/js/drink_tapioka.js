@@ -32,31 +32,21 @@ function completeHandler(event){
     stage = new createjs.Stage("demoCanvas");
 
     bitmap_tea = new createjs.Bitmap(manifest[0].src);
-    bitmap_tea.image.onload = function(){
-        bitmap_tea.setTransform(250, 75, 0.25, 0.25);
-        bitmap_tea.regX = bitmap_tea.getTransformedBounds().width / 2;
-        bitmap_tea.regY = bitmap_tea.getTransformedBounds().height /2;
-        stage.update();
-    };
+    bitmap_tea.setTransform(250, 75, 0.25, 0.25);
+    bitmap_tea.regX = bitmap_tea.getTransformedBounds().width / 2;
+    bitmap_tea.regY = bitmap_tea.getTransformedBounds().height /2;
 
     bitmap_perl = new createjs.Bitmap(manifest[1].src);
     bitmap_perl.setTransform(200, 100, 0.2, 0.2);
     bitmap_perl.regX = bitmap_perl.image.width / 2;
     bitmap_perl.regY = bitmap_perl.image.height /2;
     bitmap_perl.visible = false;
-    bitmap_perl.image.onload = function(){
-        stage.update();
-    };
 
     bitmap_guild = new createjs.Bitmap(manifest[2].src);
     bitmap_guild.setTransform(200, 250, 0.25, 0.25);
     bitmap_guild.regX = bitmap_guild.image.width /2;
     bitmap_guild.regY = bitmap_guild.image.height/2;
-    bitmap_guild.image.onload = function(){
-        // bound_guild is to be used for "handleUp" eventHandler
-        bound_guild = bitmap_guild.getTransformedBounds();
-        stage.update();
-    };
+    bound_guild = bitmap_guild.getTransformedBounds();
 
     // add a button (for making thig bigger)
     button = new createjs.Container();
