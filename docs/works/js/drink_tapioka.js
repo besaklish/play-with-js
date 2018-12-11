@@ -6,7 +6,8 @@ var bitmap_tea, bitmap_perl, bitmap_guild, button;
 function init() {
     queue = new createjs.LoadQueue();
 
-    queue.addEventListener('complete', completeHandler);
+    queue.addEventListener('complete', handleComplete);
+    queue.addEventListener('fileload', handleFileload);
 
     manifest = [
         {
@@ -14,39 +15,42 @@ function init() {
             src:'../images/tapioka_tea.png'
         },
         {
+            id: 'bitmap_guild',
+            src:'../images/toki.jpg'
+        },
+        {
             id: 'bitmap_perl',
             src:'../images/tapioka_perl.png'
         },
-        {
-            id: 'bitmap_guild',
-            src:'../images/toki.jpg'
-        }
     ];
 
-    queue.setMaxConnections(3);
+    queue.setMaxConnections(1);
     queue.loadManifest(manifest);
 }
 
+function handleFileload(event){
+    if (event.item.id === "bitmap_tea"){
+        bitmap_tea = new createjs.Bitmap(event.result);
+        bitmap_tea.set({x:250, y:75, scale:0.25});
+        bitmap_tea.regX = bitmap_tea.getTransformedBounds().width / 2;
+        bitmap_tea.regY = bitmap_tea.getTransformedBounds().height /2;
+    }
+    else if (event.item.id == "bitmap_guild"){
+        bitmap_guild = new createjs.Bitmap(event.result);
+        bitmap_guild.set({x:100, y:150, scale:0.25});
+        bound_guild = bitmap_guild.getTransformedBounds();
+    }
+    else if (event.item.id == "bitmap_perl"){
+        bitmap_perl = new createjs.Bitmap(event.result);
+        bitmap_perl.set({scale:0.2});
+        bitmap_perl.set({regX: bitmap_perl.getTransformedBounds().width/2, regY: bitmap_perl.getTransformedBounds().height/2})
+        bitmap_perl.visible = false;
+    }
+}
+
 // after PreloadJS complete its task, move on to EaselJS
-function completeHandler(event){
+function handleComplete(event){
     stage = new createjs.Stage("demoCanvas");
-
-    bitmap_tea = new createjs.Bitmap(manifest[0].src);
-    bitmap_tea.setTransform(250, 75, 0.25, 0.25);
-    bitmap_tea.regX = bitmap_tea.getTransformedBounds().width / 2;
-    bitmap_tea.regY = bitmap_tea.getTransformedBounds().height /2;
-
-    bitmap_perl = new createjs.Bitmap(manifest[1].src);
-    bitmap_perl.setTransform(200, 100, 0.2, 0.2);
-    bitmap_perl.regX = bitmap_perl.image.width / 2;
-    bitmap_perl.regY = bitmap_perl.image.height /2;
-    bitmap_perl.visible = false;
-
-    bitmap_guild = new createjs.Bitmap(manifest[2].src);
-    bitmap_guild.setTransform(200, 250, 0.25, 0.25);
-    bitmap_guild.regX = bitmap_guild.image.width /2;
-    bitmap_guild.regY = bitmap_guild.image.height/2;
-    bound_guild = bitmap_guild.getTransformedBounds();
 
     // add a button (for making thig bigger)
     button = new createjs.Container();
@@ -103,6 +107,7 @@ function completeHandler(event){
     stage.update();
 }
 
+
 var drag_x;
 var drag_y;
 var drag_regX;
@@ -120,6 +125,8 @@ function handleMove(event){
 
 function handleClick(event){
     bitmap_tea.scale *= 1.1;
+    bitmap_tea.regX *= 1.1;
+    bitmap_tea.regY *= 1.1;
     stage.update();
 }
 
