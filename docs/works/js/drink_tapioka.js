@@ -145,8 +145,8 @@ function handleUp(event){
         var poo = bitmap_perl.clone();
         poo.visible = true;
         poo.alpha = 0;
-        poo.x = bound_guild.x + bound_guild.width / 2;
-        poo.y = bound_guild.y + bound_guild.height;
+        poo.x = bound_guild.x + bound_guild.width / 2 - poo.regX;
+        poo.y = bound_guild.y + bound_guild.height - poo.regY;
         poo.on("pressmove", handleMove);
 
         // a poo goes down because of the laws of gravity.
